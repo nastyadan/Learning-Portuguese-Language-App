@@ -1,9 +1,9 @@
 import "./App.css";
 
-import Header from "./assets/components/header";
-import Table from "./assets/components/allWordsTable";
-import Footer from "./assets/components/footer";
-import Card from "./assets/components/card";
+import Header from "./assets/components/Header";
+import Table from "./assets/components/AllWordsTable";
+import Footer from "./assets/components/Footer";
+import Card from "./assets/components/Card";
 
 function App() {
   return (
