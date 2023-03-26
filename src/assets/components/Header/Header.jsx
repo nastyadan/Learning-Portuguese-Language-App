@@ -1,9 +1,10 @@
 import React from "react";
-import "../styles/footer.css";
-export default class Footer extends React.Component {
+import "./Header.css";
+
+export default class Header extends React.Component {
   render() {
     return (
-      <div className="footer">
+      <div className="header">
         <nav>
           <button>Все слова</button>
           <button>Мой словарь</button>

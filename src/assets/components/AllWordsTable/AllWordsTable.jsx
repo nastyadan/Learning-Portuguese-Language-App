@@ -1,4 +1,5 @@
 import React from "react";
+import "./allWordsTable.css";
 
 export default class Table extends React.Component {
   render() {
