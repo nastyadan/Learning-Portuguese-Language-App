@@ -1,0 +1,35 @@
+@import "../../style/variables.scss";
+.table {
+  background-color: $lightPink;
+  border-radius: $borderRadius;
+  text-align: center;
+  width: 80vw;
+  margin: 30px auto;
+  padding: 40px;
+}
+
+.tdName {
+  background-color: $pink;
+
+  font-size: large;
+  font-weight: 600;
+}
+
+.tdWords {
+  background-color: $white;
+}
+
+.tableButton {
+  box-sizing: border-box;
+  padding: 8px 12px;
+  margin: 15px 3px;
+  background-color: $brightPink;
+  border: 2px solid $pink;
+  border-radius: $borderRadius;
+  font-weight: 400;
+  font-size: large;
+  color: $white;
+  &:hover {
+    background-color: $rasberry;
+  }
+}

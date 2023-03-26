@@ -1,0 +1,33 @@
+.table {
+  background-color: rgb(252, 205, 213);
+  border-radius: 3%;
+  text-align: center;
+  width: 80vw;
+  margin: 30px auto;
+  padding: 40px;
+}
+
+.tdName {
+  background-color: rgb(242, 157, 173);
+  font-size: large;
+  font-weight: 600;
+}
+
+.tdWords {
+  background-color: rgb(247, 245, 248);
+}
+
+.tableButton {
+  box-sizing: border-box;
+  padding: 8px 12px;
+  margin: 15px 3px;
+  background-color: rgb(204, 20, 42);
+  border: 2px solid rgb(242, 157, 173);
+  border-radius: 3%;
+  font-weight: 400;
+  font-size: large;
+  color: rgb(247, 245, 248);
+}
+.tableButton:hover {
+  background-color: rgb(142, 9, 40);
+}/*# sourceMappingURL=allWordsTable.module.css.map */

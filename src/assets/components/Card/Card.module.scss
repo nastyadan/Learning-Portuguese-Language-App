@@ -1,0 +1,49 @@
+@import '../../style/variables.scss';
+
+.card {
+  width: 25vw;
+  background-color: $lightPink;
+  border-radius: $borderRadius;
+  margin: 30px auto;
+  .cardContainer {
+    margin: 10px 0;
+    height: 150px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    .wordInEnglish {
+      font-weight: 800;
+      font-size: larger;
+    }
+
+    .wordInRussian {
+      font-weight: 600;
+      font-size: large;
+    }
+
+    .tag {
+      box-sizing: border-box;
+      padding: 3px;
+      margin: 0 auto;
+      width: 31%;
+      border-radius: $borderRadius;
+      background-color: $pink;
+      border: 2px solid $white;
+    }
+  }
+  .cardButton {
+    box-sizing: border-box;
+    padding: 8px 12px;
+    margin: 15px auto;
+    background-color: $brightPink;
+    border: 2px solid $pink;
+    border-radius: $borderRadius;
+    font-weight: 400;
+    font-size: large;
+    color: $white;
+    &:hover {
+      background-color: $rasberry;
+    }
+  }
+}

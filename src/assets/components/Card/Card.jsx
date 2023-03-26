@@ -1,5 +1,5 @@
 import React from "react";
-import "./Card.css";
+import cardStyle from "./Card.module.scss";
 
 export default class Card extends React.Component {
   constructor(props) {
@@ -17,15 +17,21 @@ export default class Card extends React.Component {
   render() {
     const { portuguese, transcription, russian, ...props } = this.props;
     return (
-      <div>
-        <div> Слово на португальском:{portuguese}</div>
-        <div>Транскрипция: {transcription}</div>
+      <div className={cardStyle.card}>
+        <div className={cardStyle.cardContainer}>
+          <div className={cardStyle.wordInPortuguese}>{portuguese}</div>
+          <div>Транскрипция: {transcription}</div>
+        </div>
         {this.state.pressed && <div>Перевод: {russian}</div>}
-        <button {...props} onClick={this.handleTranslate}>
+        <button
+          {...props}
+          onClick={this.handleTranslate}
+          className={cardStyle.cardButton}
+        >
           {this.state.pressed ? "Посмотреть перевод" : "Скрыть перевод"}
         </button>
 
-        <div>Тэг</div>
+        <div className={cardStyle.tag}>Тэг</div>
       </div>
     );
   }
