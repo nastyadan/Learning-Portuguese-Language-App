@@ -4,6 +4,7 @@ export const listOfWords = [
     portuguese: "Boa noite!",
     transcription: "Боа нойтэ!",
     russian: "Добрый вечер!",
+
   },
   {
     id: "13067",
@@ -30,12 +31,6 @@ export const listOfWords = [
     russian: "Закрыто",
   },
   {
-    id: "13146",
-    portuguese: "mother",
-    transcription: "[ ˈmʌð.ə r] ",
-    russian: "мать",
-  },
-  {
     id: "13147",
     portuguese: "Disculpe",
     transcription: "Дишкулпэ",
@@ -49,15 +44,9 @@ export const listOfWords = [
   },
   {
     id: "13158",
-    portuguese: "por favor",
+    portuguese: "Por favor",
     transcription: "Пор фавор",
     russian: "Пожалуйста",
-  },
-  {
-    id: "13163",
-    portuguese: "brake",
-    transcription: "[ breɪk ]",
-    russian: "тормоз",
   },
   {
     id: "13166",

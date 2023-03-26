@@ -1,4 +1,5 @@
 import React from "react";
+import { listOfWords } from "../../data/Data";
 import "./allWordsTable.css";
 
 export default class Table extends React.Component {
@@ -7,15 +8,25 @@ export default class Table extends React.Component {
       <table>
         <thead>
           <tr>
-            <td>English</td>
+            <td>Португальский</td>
             <td>Транскрипция</td>
             <td>Перевод</td>
             <td>Действие</td>
           </tr>
         </thead>
         <tbody>
-          Здесь будет таблица из всех слов с возможностью удаления,
-          редактирования и добавления новых слов
+          {listOfWords.map(function (item) {
+            return (
+              <tr key={item.id}>
+                <td>{item.portuguese}</td>
+                <td>{item.transcription}</td>
+                <td>{item.russian}</td>
+                <td>
+                  <button></button>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     );
