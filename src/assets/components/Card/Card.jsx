@@ -28,7 +28,7 @@ export default class Card extends React.Component {
           onClick={this.handleTranslate}
           className={cardStyle.cardButton}
         >
-          {this.state.pressed ? "Посмотреть перевод" : "Скрыть перевод"}
+          {this.state.pressed ? "Узнать перевод" : "Скрыть перевод"}
         </button>
 
         <div className={cardStyle.tag}>Тэг</div>
