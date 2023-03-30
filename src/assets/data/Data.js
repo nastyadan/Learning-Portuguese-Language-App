@@ -4,13 +4,14 @@ export const listOfWords = [
     portuguese: "Boa noite!",
     transcription: "Боа нойтэ!",
     russian: "Добрый вечер!",
-
+    couldbechanged: true,
   },
   {
     id: "13067",
     portuguese: "Boa tarde",
     transcription: "Боа тардэ!",
     russian: "Добрый день!",
+    // couldbechanged: false,
   },
   {
     id: "13069",

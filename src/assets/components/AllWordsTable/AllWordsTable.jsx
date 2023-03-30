@@ -1,9 +1,46 @@
 import React from "react";
 import { listOfWords } from "../../data/Data.js";
 import tableStyles from "./allWordsTable.module.scss";
-
+function NotAbleToChange(props) {
+  return (
+    <tbody>
+      {listOfWords.map(function (item) {
+        return (
+          <tr key={item.id} couldbechanged={item.couldbechanged}>
+            <td className={tableStyles.tdWords}>{item.portuguese}</td>
+            <td className={tableStyles.tdWords}>{item.transcription}</td>
+            <td className={tableStyles.tdWords}>{item.russian}</td>
+            <td className={tableStyles.tdWords}>
+              <button className={tableStyles.tableButton}>Редактировать</button>
+            </td>
+          </tr>
+        );
+      })}
+    </tbody>
+  );
+}
+function AbleToChange(props) {
+  return (
+    <tbody>
+      {listOfWords.map(function (item) {
+        return (
+          <tr key={item.id} couldbechanged={item.couldbechanged}>
+            <td className={tableStyles.tdWords}>{item.portuguese}</td>
+            <td className={tableStyles.tdWords}>{item.transcription}</td>
+            <td className={tableStyles.tdWords}>{item.russian}</td>
+            <td className={tableStyles.tdWords}>
+              <button className={tableStyles.tableButton}>Сохранить</button>
+              <button className={tableStyles.tableButton}>Удалить</button>
+            </td>
+          </tr>
+        );
+      })}
+    </tbody>
+  );
+}
 export default class Table extends React.Component {
   render() {
+    const { couldbechanged } = this.props;
     return (
       <table className={tableStyles.table}>
         <thead>
@@ -14,22 +51,11 @@ export default class Table extends React.Component {
             <td className={tableStyles.tdName}>Действие</td>
           </tr>
         </thead>
-        <tbody>
-          {listOfWords.map(function (item) {
-            return (
-              <tr key={item.id}>
-                <td className={tableStyles.tdWords}>{item.portuguese}</td>
-                <td className={tableStyles.tdWords}>{item.transcription}</td>
-                <td className={tableStyles.tdWords}>{item.russian}</td>
-                <td className={tableStyles.tdWords}>
-                  <button className={tableStyles.tableButton}>
-                    Редактировать
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
+        {couldbechanged ? (
+          <AbleToChange addedToCart={couldbechanged} />
+        ) : (
+          <NotAbleToChange />
+        )}
       </table>
     );
   }
