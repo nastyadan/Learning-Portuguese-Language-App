@@ -1,6 +1,6 @@
 import React from "react";
 import { listOfWords } from "../../data/Data.js";
-import tableStyles from "./allWordsTable.module.scss";
+import tableStyles from "./AllWordsTable.module.scss";
 function NotAbleToChange(props) {
   return (
     <tbody>

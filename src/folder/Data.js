@@ -11,7 +11,7 @@ export const listOfWords = [
     portuguese: "Boa tarde",
     transcription: "Боа тардэ!",
     russian: "Добрый день!",
-    // couldbechanged: false,
+    couldbechanged: false,
   },
   {
     id: "13069",
