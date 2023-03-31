@@ -6,7 +6,7 @@ function NotAbleToChange(props) {
     <tbody>
       {listOfWords.map(function (item) {
         return (
-          <tr >
+          <tr key={item.id}>
             <td className={tableStyles.tdWords}>{item.portuguese}</td>
             <td className={tableStyles.tdWords}>{item.transcription}</td>
             <td className={tableStyles.tdWords}>{item.russian}</td>
@@ -24,7 +24,7 @@ function AbleToChange(props) {
     <tbody>
       {listOfWords.map(function (item) {
         return (
-          <tr >
+          <tr key={item.id}>
             <td className={tableStyles.tdWords}>{item.portuguese}</td>
             <td className={tableStyles.tdWords}>{item.transcription}</td>
             <td className={tableStyles.tdWords}>{item.russian}</td>
