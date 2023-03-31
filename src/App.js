@@ -8,17 +8,17 @@ import { listOfWords } from "./assets/data/Data.js";
 function App() {
   return (
     <div className="App">
-      <Header></Header>
-      <Table></Table>
+      <Header />
+      <Table couldBeChanged={listOfWords.couldbechanged}></Table>
       {listOfWords.map((listOfWords) => (
         <Card
           portuguese={listOfWords.portuguese}
           transcription={listOfWords.transcription}
           russian={listOfWords.russian}
           key={listOfWords.id}
-        ></Card>
+        />
       ))}
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 }

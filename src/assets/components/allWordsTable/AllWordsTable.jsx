@@ -6,7 +6,7 @@ function NotAbleToChange(props) {
     <tbody>
       {listOfWords.map(function (item) {
         return (
-          <tr key={item.id} couldbechanged={item.couldbechanged}>
+          <tr >
             <td className={tableStyles.tdWords}>{item.portuguese}</td>
             <td className={tableStyles.tdWords}>{item.transcription}</td>
             <td className={tableStyles.tdWords}>{item.russian}</td>
@@ -24,7 +24,7 @@ function AbleToChange(props) {
     <tbody>
       {listOfWords.map(function (item) {
         return (
-          <tr key={item.id} couldbechanged={item.couldbechanged}>
+          <tr >
             <td className={tableStyles.tdWords}>{item.portuguese}</td>
             <td className={tableStyles.tdWords}>{item.transcription}</td>
             <td className={tableStyles.tdWords}>{item.russian}</td>
@@ -52,9 +52,9 @@ export default class Table extends React.Component {
           </tr>
         </thead>
         {couldbechanged ? (
-          <AbleToChange addedToCart={couldbechanged} />
+          <AbleToChange couldBeChanged={couldbechanged} />
         ) : (
-          <NotAbleToChange />
+          <NotAbleToChange couldBeChanged={couldbechanged} />
         )}
       </table>
     );
