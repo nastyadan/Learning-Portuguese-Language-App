@@ -1,7 +1,7 @@
 import React from "react";
 import { listOfWords } from "../../data/Data.js";
 import tableStyles from "./AllWordsTable.module.scss";
-function NotAbleToChange(props) {
+function NotAbleToChange(item) {
   return (
     <tbody>
       {listOfWords.map(function (item) {

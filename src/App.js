@@ -9,7 +9,9 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Table couldBeChanged={listOfWords.couldbechanged}></Table>
+      <Table
+        couldbechanged={listOfWords.map((couldbechanged) => couldbechanged)}
+      />
       {listOfWords.map((listOfWords) => (
         <Card
           portuguese={listOfWords.portuguese}
