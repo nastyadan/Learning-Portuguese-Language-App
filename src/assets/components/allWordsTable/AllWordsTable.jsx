@@ -23,11 +23,14 @@ function AbleToChange(props) {
   return (
     <tbody>
       {listOfWords.map(function (item) {
+        let portuguese = <input placeholder={item.portuguese} />;
+        let transcription = <input placeholder={item.transcription} />;
+        let russian = <input placeholder={item.russian} />;
         return (
           <tr key={item.id}>
-            <td className={tableStyles.tdWords}>{item.portuguese}</td>
-            <td className={tableStyles.tdWords}>{item.transcription}</td>
-            <td className={tableStyles.tdWords}>{item.russian}</td>
+            <td className={tableStyles.tdWords}>{portuguese}</td>
+            <td className={tableStyles.tdWords}>{transcription}</td>
+            <td className={tableStyles.tdWords}>{russian}</td>
             <td className={tableStyles.tdWords}>
               <button className={tableStyles.tableButton}>Сохранить</button>
               <button className={tableStyles.tableButton}>Удалить</button>
