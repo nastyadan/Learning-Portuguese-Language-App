@@ -42,10 +42,21 @@ function AbleToChange(props) {
   );
 }
 export default class Table extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      clicked: false,
+    };
+  }
+  handleChange = () => {
+    this.setState({
+      clicked: !this.state.clicked,
+    });
+  };
   render() {
     const { couldbechanged } = this.props;
     return (
-      <table className={tableStyles.table}>
+      <table className={tableStyles.table} onClick={this.handleChange}>
         <thead>
           <tr>
             <td className={tableStyles.tdName}>Португальский</td>
@@ -54,7 +65,8 @@ export default class Table extends React.Component {
             <td className={tableStyles.tdName}>Действие</td>
           </tr>
         </thead>
-        {couldbechanged ? (
+
+        {this.state.clicked ? (
           <AbleToChange couldBeChanged={couldbechanged} />
         ) : (
           <NotAbleToChange couldBeChanged={couldbechanged} />
