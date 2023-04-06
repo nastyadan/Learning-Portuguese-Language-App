@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "./assets/components/header/Header.jsx";
-import Table from "./assets/components/allWordsTable/AllWordsTable.jsx";
+import Table from "./assets/components/allWordsTable/table.jsx";
 import Footer from "./assets/components/footer/Footer.jsx";
 import Card from "./assets/components/card/Card.jsx";
 import { listOfWords } from "./assets/data/Data.js";
