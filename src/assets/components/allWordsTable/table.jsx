@@ -5,8 +5,9 @@ import tableStyles from "./AllWordsTable.module.scss";
 export default class Table extends React.Component {
   constructor(props) {
     super(props);
+    let couldbechanged = props.couldbechanged;
     this.state = {
-      clicked: false,
+      clicked: couldbechanged,
     };
   }
   handleChange = () => {
@@ -16,7 +17,7 @@ export default class Table extends React.Component {
   };
   render() {
     return (
-      <table className={tableStyles.table} onClick={this.handleChange}>
+      <table className={tableStyles.table}>
         <thead>
           <tr>
             <td className={tableStyles.tdName}>Португальский</td>
@@ -26,7 +27,7 @@ export default class Table extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {listOfWords.map(function (item) {
+          {listOfWords.map((item) => {
             let portuguese = <input placeholder={item.portuguese} />;
             let transcription = <input placeholder={item.transcription} />;
             let russian = <input placeholder={item.russian} />;
@@ -34,29 +35,37 @@ export default class Table extends React.Component {
               <tr key={item.id}>
                 {this.state.clicked ? (
                   <>
-                    <td className={tableStyles.tdWords}>{portuguese}</td>
-                    <td className={tableStyles.tdWords}>{transcription}</td>
-                    <td className={tableStyles.tdWords}>{russian}</td>
-                    <td className={tableStyles.tdWords}>
-                      <button className={tableStyles.tableButton}>
-                        Сохранить
-                      </button>
-                      <button className={tableStyles.tableButton}>
-                        Удалить
-                      </button>
-                    </td>
-                  </>
-                ) : (
-                  <>
-                    {" "}
                     <td className={tableStyles.tdWords}>{item.portuguese}</td>
                     <td className={tableStyles.tdWords}>
                       {item.transcription}
                     </td>
                     <td className={tableStyles.tdWords}>{item.russian}</td>
                     <td className={tableStyles.tdWords}>
-                      <button className={tableStyles.tableButton}>
+                      <button
+                        onClick={this.handleChange}
+                        className={tableStyles.tableButton}
+                      >
                         Редактировать
+                      </button>
+                    </td>
+                  </>
+                ) : (
+                  <>
+                    <td className={tableStyles.tdWords}>{portuguese}</td>
+                    <td className={tableStyles.tdWords}>{transcription}</td>
+                    <td className={tableStyles.tdWords}>{russian}</td>
+                    <td className={tableStyles.tdWords}>
+                      <button
+                        onClick={this.handleChange}
+                        className={tableStyles.tableButton}
+                      >
+                        Сохранить
+                      </button>
+                      <button
+                        onClick={this.handleChange}
+                        className={tableStyles.tableButton}
+                      >
+                        Удалить
                       </button>
                     </td>
                   </>
