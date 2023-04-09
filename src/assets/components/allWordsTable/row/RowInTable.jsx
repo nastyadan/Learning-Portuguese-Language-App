@@ -1,6 +1,6 @@
 import React from "react";
 import tableStyles from "../AllWordsTable.module.scss";
-export default class Row2 extends React.Component {
+export default class Row extends React.Component {
   constructor(props) {
     super(props);
     let couldbechanged = props.couldbechanged;
@@ -22,20 +22,6 @@ export default class Row2 extends React.Component {
       <tr key={id}>
         {this.state.clicked ? (
           <>
-            <td className={tableStyles.tdWords}>{portuguese}</td>
-            <td className={tableStyles.tdWords}>{transcription}</td>
-            <td className={tableStyles.tdWords}>{russian}</td>
-            <td className={tableStyles.tdWords}>
-              <button
-                onClick={this.handleChange}
-                className={tableStyles.tableButton}
-              >
-                Редактировать
-              </button>
-            </td>
-          </>
-        ) : (
-          <>
             <td className={tableStyles.tdWords}>{portugueseInput}</td>
             <td className={tableStyles.tdWords}>{transcriptionInput}</td>
             <td className={tableStyles.tdWords}>{russianInput}</td>
@@ -51,6 +37,20 @@ export default class Row2 extends React.Component {
                 className={tableStyles.tableButton}
               >
                 Удалить
+              </button>
+            </td>
+          </>
+        ) : (
+          <>
+            <td className={tableStyles.tdWords}>{portuguese}</td>
+            <td className={tableStyles.tdWords}>{transcription}</td>
+            <td className={tableStyles.tdWords}>{russian}</td>
+            <td className={tableStyles.tdWords}>
+              <button
+                onClick={this.handleChange}
+                className={tableStyles.tableButton}
+              >
+                Редактировать
               </button>
             </td>
           </>
