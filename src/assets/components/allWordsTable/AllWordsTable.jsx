@@ -75,3 +75,49 @@ export default class Table extends React.Component {
     );
   }
 }
+<tbody>
+  {listOfWords.map((item) => {
+    let portugueseInput = <input placeholder={item.portuguese} />;
+    let transcriptionInput = <input placeholder={item.transcription} />;
+    let russianInput = <input placeholder={item.russian} />;
+    return (
+      <tr key={item.id}>
+        {this.state.clicked ? (
+          <>
+            <td className={tableStyles.tdWords}>{item.portuguese}</td>
+            <td className={tableStyles.tdWords}>{item.transcription}</td>
+            <td className={tableStyles.tdWords}>{item.russian}</td>
+            <td className={tableStyles.tdWords}>
+              <button
+                onClick={this.handleChange}
+                className={tableStyles.tableButton}
+              >
+                Редактировать
+              </button>
+            </td>
+          </>
+        ) : (
+          <>
+            <td className={tableStyles.tdWords}>{portugueseInput}</td>
+            <td className={tableStyles.tdWords}>{transcriptionInput}</td>
+            <td className={tableStyles.tdWords}>{russianInput}</td>
+            <td className={tableStyles.tdWords}>
+              <button
+                onClick={this.handleChange}
+                className={tableStyles.tableButton}
+              >
+                Сохранить
+              </button>
+              <button
+                onClick={this.handleChange}
+                className={tableStyles.tableButton}
+              >
+                Удалить
+              </button>
+            </td>
+          </>
+        )}
+      </tr>
+    );
+  })}
+</tbody>;

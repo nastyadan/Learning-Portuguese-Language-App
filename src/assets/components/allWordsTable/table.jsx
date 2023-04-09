@@ -1,6 +1,7 @@
 import React from "react";
 import { listOfWords } from "../../data/Data.js";
 import tableStyles from "./AllWordsTable.module.scss";
+import Row2 from "./string/row2.jsx";
 
 export default class Table extends React.Component {
   constructor(props) {
@@ -28,49 +29,13 @@ export default class Table extends React.Component {
         </thead>
         <tbody>
           {listOfWords.map((item) => {
-            let portuguese = <input placeholder={item.portuguese} />;
-            let transcription = <input placeholder={item.transcription} />;
-            let russian = <input placeholder={item.russian} />;
             return (
-              <tr key={item.id}>
-                {this.state.clicked ? (
-                  <>
-                    <td className={tableStyles.tdWords}>{item.portuguese}</td>
-                    <td className={tableStyles.tdWords}>
-                      {item.transcription}
-                    </td>
-                    <td className={tableStyles.tdWords}>{item.russian}</td>
-                    <td className={tableStyles.tdWords}>
-                      <button
-                        onClick={this.handleChange}
-                        className={tableStyles.tableButton}
-                      >
-                        Редактировать
-                      </button>
-                    </td>
-                  </>
-                ) : (
-                  <>
-                    <td className={tableStyles.tdWords}>{portuguese}</td>
-                    <td className={tableStyles.tdWords}>{transcription}</td>
-                    <td className={tableStyles.tdWords}>{russian}</td>
-                    <td className={tableStyles.tdWords}>
-                      <button
-                        onClick={this.handleChange}
-                        className={tableStyles.tableButton}
-                      >
-                        Сохранить
-                      </button>
-                      <button
-                        onClick={this.handleChange}
-                        className={tableStyles.tableButton}
-                      >
-                        Удалить
-                      </button>
-                    </td>
-                  </>
-                )}
-              </tr>
+              <Row2
+                key={item.id}
+                portuguese={item.portuguese}
+                transcription={item.transcription}
+                russian={item.russian}
+              />
             );
           })}
         </tbody>

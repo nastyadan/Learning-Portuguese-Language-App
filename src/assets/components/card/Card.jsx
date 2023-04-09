@@ -15,7 +15,7 @@ export default class Card extends React.Component {
     });
   };
   render() {
-    const { portuguese, transcription, russian, ...props } = this.props;
+    const { portuguese, transcription, russian } = this.props;
     return (
       <div className={cardStyle.card}>
         <div className={cardStyle.cardContainer}>
@@ -23,12 +23,8 @@ export default class Card extends React.Component {
           <div>Транскрипция: {transcription}</div>
         </div>
         {this.state.pressed && <div>Перевод: {russian}</div>}
-        <button
-          {...props}
-          onClick={this.handleTranslate}
-          className={cardStyle.cardButton}
-        >
-          {this.state.pressed ? "Узнать перевод" : "Скрыть перевод"}
+        <button onClick={this.handleTranslate} className={cardStyle.cardButton}>
+          {this.state.pressed ? "Скрыть перевод" : "Узнать перевод"}
         </button>
 
         <div className={cardStyle.tag}>Тэг</div>
