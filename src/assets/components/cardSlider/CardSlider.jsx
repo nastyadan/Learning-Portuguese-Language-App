@@ -1,7 +1,6 @@
 import React from "react";
-//import cardStyle from "../cardSlider/Card.module.scss";
+import cardStyle from "../cardSlider/Card.module.scss";
 import { listOfWords } from "../../data/Data";
-import Card from "./card/Card";
 export default class Slider extends React.Component {
   static defaultProps = {
     defaultCardIndex: 0,
@@ -42,16 +41,25 @@ export default class Slider extends React.Component {
     }
   };
   render() {
-    // const { currentCardIndex } = this.state;
-    // const currentCard = listOfWords[currentCardIndex];
-    // const { portuguese, transcription, russian } = currentCard;
+    const { currentCardIndex } = this.state;
+    const currentCard = listOfWords[currentCardIndex];
+    const { portuguese, transcription, russian } = currentCard;
     return (
-      <div>
-        <Card />
+      <div className={cardStyle.card}>
         <div>
           <button onClick={this.handlePrevCard}>Previous</button>
           <button onClick={this.handleNextCard}>Next</button>
         </div>
+        <div className={cardStyle.cardContainer}>
+          <div className={cardStyle.wordInPortuguese}>{portuguese}</div>
+          <div>Транскрипция: {transcription}</div>
+        </div>
+        {this.state.pressed && <div>Перевод: {russian}</div>}
+        <button onClick={this.handleTranslate} className={cardStyle.cardButton}>
+          {this.state.pressed ? "Скрыть перевод" : "Узнать перевод"}
+        </button>
+
+        <div className={cardStyle.tag}>Тэг</div>
       </div>
     );
   }
