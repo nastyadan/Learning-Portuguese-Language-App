@@ -1,11 +1,16 @@
 import React from "react";
-import cardStyle from "./Card.module.scss";
+import cardStyle from "";
+import { listOfWords } from "../../../data/Data";
 
 export default class Card extends React.Component {
+  static defaultProps = {
+    defaultCardIndex: 0,
+  };
   constructor(props) {
     super(props);
 
     this.state = {
+      currentCardIndex: props.defaultCardIndex,
       pressed: false,
     };
   }
@@ -15,7 +20,10 @@ export default class Card extends React.Component {
     });
   };
   render() {
-    const { portuguese, transcription, russian } = this.props;
+    const { currentCardIndex } = this.state;
+    const currentCard = listOfWords[currentCardIndex];
+    const { portuguese, transcription, russian } = currentCard;
+    // const { portuguese, transcription, russian } = this.props;
     return (
       <div className={cardStyle.card}>
         <div className={cardStyle.cardContainer}>
