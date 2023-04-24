@@ -4,7 +4,7 @@ import AllWordsTable from "./assets/components/allWordsTable/AllWordsTable.jsx";
 import Footer from "./assets/components/footer/Footer.jsx";
 import Slider from "./assets/components/cardSlider/CardSlider";
 import { listOfWords } from "./assets/data/Data.js";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
     <div className="App">
