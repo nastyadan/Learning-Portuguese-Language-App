@@ -29,13 +29,13 @@ export default class Slider extends React.Component {
 
     this.state = {
       currentCardIndex: props.defaultCardIndex,
-      pressed: false,
-      alert: false,
+      translated: false,
+      alertMessage: false,
     };
   }
   handleTranslate = () => {
     this.setState({
-      pressed: !this.state.pressed,
+      translated: !this.state.translated,
     });
   };
 
@@ -45,12 +45,14 @@ export default class Slider extends React.Component {
     if (prevCardIndex >= 0) {
       this.setState({
         currentCardIndex: prevCardIndex,
-        pressed: false,
+        translated: false,
+        alertMessage: false,
       });
     } else {
       this.setState({
         currentCardIndex: listOfWords.length - 1,
-        pressed: false,
+        translated: false,
+        alertMessage: false,
       });
     }
   };
@@ -61,14 +63,14 @@ export default class Slider extends React.Component {
     if (nextCardIndex < listOfWords.length) {
       this.setState({
         currentCardIndex: nextCardIndex,
-        pressed: false,
-        alert: false,
+        translated: false,
+        alertMessage: false,
       });
     } else {
       this.setState({
         currentCardIndex: 0,
-        pressed: false,
-        alert: true,
+        translated: false,
+        alertMessage: true,
       });
     }
   };
@@ -80,7 +82,7 @@ export default class Slider extends React.Component {
 
     return (
       <>
-        {this.state.alert && alertMessage}
+        {this.state.alertMessage && alertMessage}
         <div className={cardStyle.sliderConteiner}>
           <div>
             <button
@@ -95,14 +97,14 @@ export default class Slider extends React.Component {
               <div className={cardStyle.wordInPortuguese}>{portuguese}</div>
               <div>{transcription}</div>
               <div>
-                {this.state.pressed && (
+                {this.state.translated && (
                   <div className={cardStyle.wordInRussian}>{russian}</div>
                 )}
                 <button
                   onClick={this.handleTranslate}
                   className={cardStyle.cardButton}
                 >
-                  {this.state.pressed ? "Скрыть перевод" : "Узнать перевод"}
+                  {this.state.translated ? "Скрыть перевод" : "Узнать перевод"}
                 </button>
               </div>
             </div>
