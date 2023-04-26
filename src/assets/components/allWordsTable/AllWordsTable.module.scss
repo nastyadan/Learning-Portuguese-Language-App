@@ -1,7 +1,7 @@
 @import "../../styles/variables.scss";
 .table {
   background-color: $lightPink;
-  border-radius: $borderRadius;
+  border-radius: $borderRadiusMin;
   text-align: center;
   width: 80vw;
   margin: 30px auto;
@@ -25,7 +25,7 @@
   margin: 15px 3px;
   background-color: $brightPink;
   border: 2px solid $pink;
-  border-radius: $borderRadius;
+  border-radius: $borderRadiusMin;
   font-weight: 400;
   font-size: large;
   color: $white;

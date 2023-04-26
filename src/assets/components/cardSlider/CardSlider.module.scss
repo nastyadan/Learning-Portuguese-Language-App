@@ -1,0 +1,70 @@
+@import "../../styles/variables.scss";
+.sliderConteiner {
+  width: 55vw;
+  margin: 30px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  .sliderButton {
+    box-sizing: border-box;
+    width: 80px;
+    height: 80px;
+    padding: 8px 12px;
+    background-color: $brightPink;
+    border: 2px solid $pink;
+    border-radius: $borderRadiusMax;
+    font-weight: 400;
+    font-size: large;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $white;
+    &:hover {
+      background-color: $rasberry;
+      cursor: pointer;
+    }
+  }
+  .card {
+    width: 30vw;
+    height: 35vh;
+    background-color: $lightPink;
+    border-radius: $borderRadiusMin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .cardContainer {
+      margin: 10px 0;
+      height: 150px;
+      display: flex;
+
+      flex-direction: column;
+
+      .wordInPortuguese {
+        font-weight: 800;
+        font-size: larger;
+      }
+
+      .wordInRussian {
+        font-weight: 600;
+        font-size: large;
+      }
+
+      .cardButton {
+        box-sizing: border-box;
+        padding: 8px 12px;
+        margin: 15px auto;
+        background-color: $brightPink;
+        border: 2px solid $pink;
+        border-radius: $borderRadiusMin;
+        font-weight: 400;
+        font-size: large;
+        color: $white;
+        &:hover {
+          background-color: $rasberry;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

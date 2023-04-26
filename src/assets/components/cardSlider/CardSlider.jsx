@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import cardStyle from "../cardSlider/Card.module.scss";
+import cardStyle from "../cardSlider/CardSlider.module.scss";
 import { listOfWords } from "../../data/Data";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
@@ -81,22 +81,40 @@ export default class Slider extends React.Component {
     return (
       <>
         {this.state.alert && alertMessage}
-        <div className={cardStyle.card}>
+        <div className={cardStyle.sliderConteiner}>
           <div>
-            <button onClick={this.handlePrevCard}>Previous</button>
-            <button onClick={this.handleNextCard}>Next</button>
+            <button
+              className={cardStyle.sliderButton}
+              onClick={this.handlePrevCard}
+            >
+              Назад
+            </button>
           </div>
-          <div className={cardStyle.cardContainer}>
-            <div className={cardStyle.wordInPortuguese}>{portuguese}</div>
-            <div>Транскрипция: {transcription}</div>
+          <div className={cardStyle.card}>
+            <div className={cardStyle.cardContainer}>
+              <div className={cardStyle.wordInPortuguese}>{portuguese}</div>
+              <div>{transcription}</div>
+              <div>
+                {this.state.pressed && (
+                  <div className={cardStyle.wordInRussian}>{russian}</div>
+                )}
+                <button
+                  onClick={this.handleTranslate}
+                  className={cardStyle.cardButton}
+                >
+                  {this.state.pressed ? "Скрыть перевод" : "Узнать перевод"}
+                </button>
+              </div>
+            </div>
           </div>
-          {this.state.pressed && <div>Перевод: {russian}</div>}
-          <button
-            onClick={this.handleTranslate}
-            className={cardStyle.cardButton}
-          >
-            {this.state.pressed ? "Скрыть перевод" : "Узнать перевод"}
-          </button>
+          <div>
+            <button
+              className={cardStyle.sliderButton}
+              onClick={this.handleNextCard}
+            >
+              Вперед
+            </button>
+          </div>
         </div>
       </>
     );

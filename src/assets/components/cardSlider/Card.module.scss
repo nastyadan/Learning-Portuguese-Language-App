@@ -21,16 +21,6 @@
       font-weight: 600;
       font-size: large;
     }
-
-    .tag {
-      box-sizing: border-box;
-      padding: 3px;
-      margin: 0 auto;
-      width: 31%;
-      border-radius: $borderRadius;
-      background-color: $pink;
-      border: 2px solid $white;
-    }
   }
   .cardButton {
     box-sizing: border-box;
@@ -38,13 +28,13 @@
     margin: 15px auto;
     background-color: $brightPink;
     border: 2px solid $pink;
-    border-radius: $borderRadius;
+    border-radius: $borderRadiusMin;
     font-weight: 400;
     font-size: large;
     color: $white;
     &:hover {
       background-color: $rasberry;
-      cursor: pointer
+      cursor: pointer;
     }
   }
 }

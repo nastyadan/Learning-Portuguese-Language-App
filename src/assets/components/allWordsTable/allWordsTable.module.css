@@ -1,6 +1,6 @@
 .table {
   background-color: rgb(252, 205, 213);
-  border-radius: 3%;
+  border-radius: 4%;
   text-align: center;
   width: 80vw;
   margin: 30px auto;
@@ -23,7 +23,7 @@
   margin: 15px 3px;
   background-color: rgb(204, 20, 42);
   border: 2px solid rgb(242, 157, 173);
-  border-radius: 3%;
+  border-radius: 4%;
   font-weight: 400;
   font-size: large;
   color: rgb(247, 245, 248);
