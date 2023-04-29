@@ -20,19 +20,14 @@ function AlertMessage() {
     </>
   );
 }
-export default class Slider extends React.Component {
-  static defaultProps = {
-    defaultCardIndex: 0,
-  };
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      currentCardIndex: props.defaultCardIndex,
-      translated: false,
-      alertMessage: false,
-    };
-  }
+export default class Slider extends React.Component {
+  state = {
+    currentCardIndex: this.props.defaultCardIndex || 0,
+    translated: false,
+    alertMessage: false,
+  };
+
   handleTranslate = () => {
     this.setState({
       translated: !this.state.translated,
@@ -122,3 +117,6 @@ export default class Slider extends React.Component {
     );
   }
 }
+Slider.defaultProps = {
+  defaultCardIndex: 0,
+};
