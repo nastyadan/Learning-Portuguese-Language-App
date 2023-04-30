@@ -34,17 +34,7 @@ function App() {
         </header>
         <main>
           <Routes>
-            <Route
-              path="/cards"
-              element={
-                <Slider
-                  portuguese={listOfWords.portuguese}
-                  transcription={listOfWords.transcription}
-                  russian={listOfWords.russian}
-                  key={listOfWords.id}
-                />
-              }
-            />
+            <Route path="/cards" element={<Slider {...listOfWords} />} />
             <Route
               path="/table"
               element={

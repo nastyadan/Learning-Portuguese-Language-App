@@ -17,15 +17,7 @@ export default class Table extends React.Component {
         </thead>
         <tbody>
           {listOfWords.map((item) => {
-            return (
-              <Row
-                couldbechanged={item.couldbechanged}
-                key={item.id}
-                portuguese={item.portuguese}
-                transcription={item.transcription}
-                russian={item.russian}
-              />
-            );
+            return <Row key={item.id} {...item} />;
           })}
         </tbody>
       </table>
