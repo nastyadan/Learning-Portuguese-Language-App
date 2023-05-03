@@ -1,13 +1,22 @@
 import React from "react";
-import footerStyle from "./Footer.module.scss";
+import footerStyles from "./Footer.module.scss";
+import { Link } from "react-router-dom";
 export default class Footer extends React.Component {
   render() {
     return (
-      <div className={footerStyle.footer}>
-        <nav className={footerStyle.nav}>
-          <button className={footerStyle.buttonInNav}>Все слова</button>
-          <button className={footerStyle.buttonInNav}>Мой словарь</button>
-          <button className={footerStyle.buttonInNav}>Начать тренировку</button>
+      <div className={footerStyles.footer}>
+        <nav className={footerStyles.nav}>
+          <Link to="/">
+            <button className={footerStyles.buttonInNav}>На главную</button>
+          </Link>
+          <Link to="/table">
+            <button className={footerStyles.buttonInNav}>Список слов</button>
+          </Link>
+          <Link to="/cards">
+            <button className={footerStyles.buttonInNav}>
+              Смотреть карточки
+            </button>
+          </Link>
         </nav>
       </div>
     );

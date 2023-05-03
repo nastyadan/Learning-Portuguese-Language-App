@@ -1,37 +1,20 @@
 import "./App.css";
 import React from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-//import Header from "./assets/components/header/Header.jsx";
-import headerStyles from "./assets/components/header/Header.module.scss";
+import Header from "./assets/components/header/Header.jsx";
+//import headerStyles from "./assets/components/header/Header.module.scss";
 import AllWordsTable from "./assets/components/allWordsTable/AllWordsTable.jsx";
 //import Footer from "./assets/components/footer/Footer.jsx";
 import footerStyles from "./assets/components/footer/Footer.module.scss";
 import Slider from "./assets/components/cardSlider/CardSlider";
 import { listOfWords } from "./assets/data/Data.js";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <header>
-          <div className={headerStyles.header}>
-            <nav className={headerStyles.nav}>
-              <Link to="/">
-                <button className={headerStyles.buttonInNav}>На главную</button>
-              </Link>
-              <Link to="/table">
-                <button className={headerStyles.buttonInNav}>
-                  Список слов
-                </button>
-              </Link>
-              <Link to="/cards">
-                <button className={headerStyles.buttonInNav}>
-                  Смотреть карточки
-                </button>
-              </Link>
-            </nav>
-          </div>
-        </header>
+        <Header />
         <main>
           <Routes>
             <Route path="/cards" element={<Slider {...listOfWords} />} />
