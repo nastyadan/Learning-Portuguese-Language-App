@@ -5,7 +5,8 @@
   text-align: center;
 }
 .footer .nav {
-  margin: 30px auto;
+  margin: 20px auto;
+  padding-bottom: 0;
 }
 .footer .nav .buttonInNav {
   width: 350px;

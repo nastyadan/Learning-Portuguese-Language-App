@@ -1,11 +1,14 @@
 .header {
+  position: fixed;
+  top: 0;
+  width: 100%;
   background-color: rgb(242, 157, 173);
   display: flex;
   flex-wrap: wrap;
   text-align: center;
 }
 .header .nav {
-  margin: 30px auto;
+  margin: 10px auto;
 }
 .header .nav .buttonInNav {
   width: 350px;

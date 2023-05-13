@@ -1,12 +1,15 @@
 @import "../../styles/variables.scss";
 $borderRadius: 3%;
 .header {
+  position: fixed;
+  top: 0;
+  width: 100%;
   background-color: $pink;
   display: flex;
   flex-wrap: wrap;
   text-align: center;
   .nav {
-    margin: 30px auto;
+    margin: 10px auto;
     .buttonInNav {
       width: 350px;
       margin: 15px 10px;
