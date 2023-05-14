@@ -22,15 +22,23 @@ function AlertMessage() {
 }
 
 export default class Slider extends React.Component {
+  constructor(props) {
+    super(props);
+    this.buttonReference = React.createRef();
+  }
   state = {
     currentCardIndex: this.props.defaultCardIndex || 0,
     translated: false,
     alertMessage: false,
+    count: 0,
   };
-
+  componentDidMount() {
+    this.buttonReference.current.focus();
+  }
   handleTranslate = () => {
     this.setState({
       translated: !this.state.translated,
+      count: this.state.count + 1,
     });
   };
 
@@ -73,11 +81,11 @@ export default class Slider extends React.Component {
     const { currentCardIndex } = this.state;
     const currentCard = listOfWords[currentCardIndex];
     const { portuguese, transcription, russian } = currentCard;
-    let alertMessage = <AlertMessage />;
+    let count = this.state.count;
+    let alertMessage = <AlertMessage className={cardStyle.alertMessage} />;
 
     return (
       <>
-        {this.state.alertMessage && alertMessage}
         <div className={cardStyle.sliderConteiner}>
           <div>
             <button
@@ -96,6 +104,7 @@ export default class Slider extends React.Component {
                   <div className={cardStyle.wordInRussian}>{russian}</div>
                 )}
                 <button
+                  ref={this.buttonReference}
                   onClick={this.handleTranslate}
                   className={cardStyle.cardButton}
                 >
@@ -113,6 +122,8 @@ export default class Slider extends React.Component {
             </button>
           </div>
         </div>
+        <div>Изучено слов: {count} </div>
+        {this.state.alertMessage && alertMessage}
       </>
     );
   }
