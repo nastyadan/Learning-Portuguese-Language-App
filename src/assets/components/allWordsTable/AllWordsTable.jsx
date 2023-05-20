@@ -1,7 +1,7 @@
 import React from "react";
 import { listOfWords } from "../../data/Data.js";
 import tableStyles from "./AllWordsTable.module.scss";
-import Row from "./row/RowInTable.jsx";
+import Row from "../row/RowInTable.jsx";
 
 export default class Table extends React.Component {
   render() {

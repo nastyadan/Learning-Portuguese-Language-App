@@ -1,5 +1,5 @@
 import React from "react";
-import tableStyles from "../AllWordsTable.module.scss";
+import tableStyles from "../allWordsTable/AllWordsTable.module.scss";
 export default class Row extends React.Component {
   constructor(props) {
     super(props);
