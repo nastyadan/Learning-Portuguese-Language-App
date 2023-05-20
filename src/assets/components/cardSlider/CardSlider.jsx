@@ -31,15 +31,32 @@ export default class Slider extends React.Component {
     translated: false,
     alertMessage: false,
     count: 0,
+    viewedTranslations: [],
   };
   componentDidMount() {
     this.buttonReference.current.focus();
   }
   handleTranslate = () => {
-    this.setState({
-      translated: !this.state.translated,
-      count: this.state.count + 1,
-    });
+    const { currentCardIndex, viewedTranslations } = this.state;
+    const currentTranslation = listOfWords[currentCardIndex].russian;
+
+    if (!viewedTranslations.includes(currentTranslation)) {
+      this.setState((prevState) => ({
+        translated: !prevState.translated,
+        count: prevState.count + 1,
+        viewedTranslations: [
+          ...prevState.viewedTranslations,
+          currentTranslation,
+        ],
+      }));
+    } else {
+      this.setState((prevState) => ({
+        translated: !prevState.translated,
+      }));
+    }
+    if (this.buttonReference.current) {
+      this.buttonReference.current.blur();
+    }
   };
 
   handlePrevCard = () => {
