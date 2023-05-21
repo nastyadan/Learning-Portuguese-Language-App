@@ -10,14 +10,13 @@ export default class Row extends React.Component {
       portuguese: "",
       transcription: "",
       russian: "",
-      //  errorInPortuguese: false,
-      //   errorInTranscription: false,
-      //  errorInRussian: false,
-      // portugueseError: "",
-      // transcriptionError: "",
-      //russianError: "",
       errorInInput: false,
-      emptyInput: false,
+      emptyInputRussian: false,
+      emptyInputTranscription: false,
+      emptyInputPortuguese: false,
+      colorOfInputRussian: "",
+      colorOfInputTranscription: "",
+      colorOfInputPortuguese: "",
     };
   }
   handleChange = () => {
@@ -43,40 +42,68 @@ export default class Row extends React.Component {
     }
   };
 
-  blurHandler = (e) => {
+  blurHandlerPortuguese = (e) => {
     const value = e.target.value;
     const emptyInput = "";
     if (emptyInput !== value) {
       this.setState({
-        emptyInput: false,
+        emptyInputPortuguese: false,
       });
     } else {
       this.setState({
-        emptyInput: true,
+        emptyInputPortuguese: true,
+        colorOfInputPortuguese: "red",
+      });
+    }
+  };
+  blurHandlerTranscription = (e) => {
+    const value = e.target.value;
+    const emptyInput = "";
+    if (emptyInput !== value) {
+      this.setState({
+        emptyInputTranscription: false,
+      });
+    } else {
+      this.setState({
+        emptyInputTranscription: true,
+        colorOfInputTranscription: "red",
+      });
+    }
+  };
+
+  blurHandlerRussian = (e) => {
+    const value = e.target.value;
+    const emptyInput = "";
+    if (emptyInput !== value) {
+      this.setState({
+        emptyInputRussian: false,
+      });
+    } else {
+      this.setState({
+        emptyInputRussian: true,
+        colorOfInputRussian: "red",
       });
     }
   };
 
   render() {
-    // const portugueseError = this.state.portugueseError;
-    // const errorInPortuguese = this.state.portugueseDirty;
-    // const transcriptionError = this.state.transcriptionError;
-    // const errorInTranscription = this.state.transcriptionDirty;
-    // const russianError = this.state.russianError;
-    // const errorInRussian = this.state.russianDirty;
     const error = "Значение может включать только буквы";
     const errorInInput = this.state.errorInInput;
-    const emptyInput = this.state.emptyInput;
+    const emptyInputRussian = this.state.emptyInputRussian;
+    const emptyInputTranscription = this.state.emptyInputTranscription;
+    const emptyInputPortuguese = this.state.emptyInputPortuguese;
     const empty = "Нужно заполнить все поля";
     const { id, portuguese, transcription, russian } = this.props;
+    const color = "red";
     let portugueseInput = (
       <input
         type="text"
         placeholder={portuguese}
         name="portuguese"
         onChange={this.handleInputChange}
-        onBlur={this.blurHandler}
+        onBlur={this.blurHandlerPortuguese}
         defaultValue={this.state.portuguese}
+        style={{ borderColor: this.state.colorOfInputPortuguese }}
       />
     );
     let transcriptionInput = (
@@ -84,8 +111,9 @@ export default class Row extends React.Component {
         placeholder={transcription}
         name="transcription"
         onChange={this.handleInputChange}
-        onBlur={this.blurHandler}
+        onBlur={this.blurHandlerTranscription}
         defaultValue={this.state.transcription}
+        style={{ borderColor: this.state.colorOfInputTranscription }}
       />
     );
     let russianInput = (
@@ -93,8 +121,9 @@ export default class Row extends React.Component {
         placeholder={russian}
         name="russian"
         onChange={this.handleInputChange}
-        onBlur={this.blurHandler}
+        onBlur={this.blurHandlerRussian}
         defaultValue={this.state.russian}
+        style={{ borderColor: this.state.colorOfInputRussian }}
       />
     );
 
@@ -137,9 +166,11 @@ export default class Row extends React.Component {
             </>
           )}
         </tr>
-        {emptyInput && <div style={{ color: "red" }}>{empty}</div>}
+        {emptyInputRussian && <div style={{ color: color }}>{empty}</div>}
+        {emptyInputTranscription && <div style={{ color: color }}>{empty}</div>}
+        {emptyInputPortuguese && <div style={{ color: color }}>{empty}</div>}
 
-        {errorInInput && <div style={{ color: "red" }}>{error}</div>}
+        {errorInInput && <div style={{ color: color }}>{error}</div>}
       </>
     );
   }
