@@ -27,6 +27,15 @@ export default class Row extends React.Component {
       emptyInputPortuguese: true,
     });
   };
+  handleSaveAndDelite = () => {
+    this.setState({
+      clicked: !this.state.clicked,
+      emptyInputRussian: false,
+      emptyInputTranscription: false,
+      emptyInputPortuguese: false,
+    });
+  };
+
   handleInputChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -179,7 +188,7 @@ export default class Row extends React.Component {
 
               <td className={tableStyles.tdWords}>
                 <button
-                  onClick={this.handleChange}
+                  onClick={this.handleSaveAndDelite}
                   className={tableStyles.tableButton}
                   disabled={
                     (emptyInputRussian ||
@@ -192,7 +201,7 @@ export default class Row extends React.Component {
                   Сохранить
                 </button>
                 <button
-                  onClick={this.handleChange}
+                  onClick={this.handleSaveAndDelite}
                   className={tableStyles.tableButton}
                 >
                   Удалить
