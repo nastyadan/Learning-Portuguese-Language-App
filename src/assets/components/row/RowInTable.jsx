@@ -28,11 +28,11 @@ export default class Row extends React.Component {
     });
   };
   handleInputChange = (e) => {
-    //   const name = e.target.name;
+    const name = e.target.name;
     const value = e.target.value;
     const result = /[^a-z]/gi;
 
-    //  this.setState({ [name]: value });
+    this.setState({ [name]: value });
     if (result.test(value)) {
       this.setState({
         errorInInput: true,
