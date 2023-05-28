@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: space-evenly;
 }
+
 .sliderConteiner .sliderButton {
   box-sizing: border-box;
   width: 80px;
@@ -20,10 +21,12 @@
   justify-content: center;
   color: rgb(247, 245, 248);
 }
+
 .sliderConteiner .sliderButton:hover {
   background-color: rgb(142, 9, 40);
   cursor: pointer;
 }
+
 .sliderConteiner .card {
   width: 30vw;
   height: 35vh;
@@ -33,20 +36,24 @@
   align-items: center;
   justify-content: center;
 }
+
 .sliderConteiner .card .cardContainer {
   margin: 10px 0;
   height: 150px;
   display: flex;
   flex-direction: column;
 }
-.sliderConteiner .card .cardContainer .wordInPortuguese {
+
+.sliderConteiner .card .cardContainer .wordInenglish {
   font-weight: 800;
   font-size: larger;
 }
+
 .sliderConteiner .card .cardContainer .wordInRussian {
   font-weight: 600;
   font-size: large;
 }
+
 .sliderConteiner .card .cardContainer .cardButton {
   box-sizing: border-box;
   padding: 8px 12px;
@@ -58,7 +65,10 @@
   font-size: large;
   color: rgb(247, 245, 248);
 }
+
 .sliderConteiner .card .cardContainer .cardButton:hover {
   background-color: rgb(142, 9, 40);
   cursor: pointer;
-}/*# sourceMappingURL=CardSlider.module.css.map */
+}
+
+/*# sourceMappingURL=CardSlider.module.css.map */

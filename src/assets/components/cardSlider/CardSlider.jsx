@@ -97,7 +97,7 @@ export default class Slider extends React.Component {
   render() {
     const { currentCardIndex } = this.state;
     const currentCard = listOfWords[currentCardIndex];
-    const { portuguese, transcription, russian } = currentCard;
+    const { english, transcription, russian } = currentCard;
     let count = this.state.count;
     let alertMessage = <AlertMessage className={cardStyle.alertMessage} />;
 
@@ -114,7 +114,7 @@ export default class Slider extends React.Component {
           </div>
           <div className={cardStyle.card}>
             <div className={cardStyle.cardContainer}>
-              <div className={cardStyle.wordInPortuguese}>{portuguese}</div>
+              <div className={cardStyle.wordInenglish}>{english}</div>
               <div>{transcription}</div>
               <div>
                 {this.state.translated && (

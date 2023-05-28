@@ -4,21 +4,20 @@ import tableStyles from "../allWordsTable/AllWordsTable.module.scss";
 export default class Row extends React.Component {
   constructor(props) {
     super(props);
-    let couldbechanged = props.couldbechanged;
     this.state = {
-      clicked: couldbechanged,
-      portuguese: "",
+      couldbechanged: false,
+      english: "",
       transcription: "",
       russian: "",
 
       errorInInput: false,
       emptyInputRussian: false,
       emptyInputTranscription: false,
-      emptyInputPortuguese: false,
+      emptyInputenglish: false,
       colorOfInputRussian: "",
       colorOfInputTranscription: "",
-      colorOfInputPortuguese: "",
-      borderColorPortuguese: "",
+      colorOfInputenglish: "",
+      borderColorenglish: "",
       borderColorTranscription: "",
       borderColorRussian: "",
       color: "",
@@ -26,11 +25,11 @@ export default class Row extends React.Component {
   }
   handleChange = () => {
     this.setState({
-      clicked: !this.state.clicked,
+      couldbechanged: true,
       emptyInputRussian: true,
       emptyInputTranscription: true,
-      emptyInputPortuguese: true,
-      borderColorPortuguese: "red",
+      emptyInputenglish: true,
+      borderColorenglish: "red",
       borderColorTranscription: "red",
       borderColorRussian: "red",
       color: "red",
@@ -38,27 +37,27 @@ export default class Row extends React.Component {
   };
   handleCansel = () => {
     this.setState({
-      clicked: !this.state.clicked,
+      couldbechanged: false,
       emptyInputRussian: false,
       emptyInputTranscription: false,
-      emptyInputPortuguese: false,
+      emptyInputenglish: false,
       errorInInput: false,
     });
   };
   handleSave = () => {
     this.setState(
       {
-        clicked: !this.state.clicked,
+        couldbechanged: false,
         emptyInputRussian: false,
         emptyInputTranscription: false,
-        emptyInputPortuguese: false,
+        emptyInputenglish: false,
         errorInInput: false,
       },
       this.doItLater
     );
   };
   doItLater = () => {
-    console.log(this.state.portuguese);
+    console.log(this.state.english);
     console.log(this.state.transcription);
     console.log(this.state.russian);
   };
@@ -68,7 +67,7 @@ export default class Row extends React.Component {
     this.setState({ [name]: value });
   };
 
-  blurHandlerChangePortuguese = (e) => {
+  blurHandlerChangeenglish = (e) => {
     const value = e.target.value;
     const validation = /[^a-zа-яё ]/iu;
     const emptyInput = "";
@@ -79,16 +78,16 @@ export default class Row extends React.Component {
     } else {
       this.setState({
         errorInInput: false,
-        borderColorPortuguese: "black",
+        borderColorenglish: "black",
       });
     }
     if (emptyInput === value) {
       this.setState({
-        emptyInputPortuguese: true,
+        emptyInputenglish: true,
       });
     } else {
       this.setState({
-        emptyInputPortuguese: false,
+        emptyInputenglish: false,
       });
     }
   };
@@ -147,21 +146,21 @@ export default class Row extends React.Component {
 
     const {
       errorInInput,
-      emptyInputPortuguese,
+      emptyInputenglish,
       emptyInputTranscription,
       emptyInputRussian,
     } = this.state;
-    const { id, portuguese, transcription, russian } = this.props;
+    const { id, english, transcription, russian } = this.props;
 
-    let portugueseInput = (
+    let englishInput = (
       <input
         type="text"
-        placeholder={portuguese}
-        name="portuguese"
+        placeholder={english}
+        name="english"
         onChange={this.handleInputChange}
-        onBlur={this.blurHandlerChangePortuguese}
-        value={this.state.portuguese}
-        style={{ borderColor: this.state.borderColorPortuguese }}
+        onBlur={this.blurHandlerChangeenglish}
+        value={this.state.english}
+        style={{ borderColor: this.state.borderColorenglish }}
       />
     );
     let transcriptionInput = (
@@ -188,9 +187,9 @@ export default class Row extends React.Component {
     return (
       <>
         <tr key={id}>
-          {this.state.clicked ? (
+          {this.state.couldbechanged ? (
             <>
-              <td className={tableStyles.tdWords}>{portugueseInput}</td>
+              <td className={tableStyles.tdWords}>{englishInput}</td>
               <td className={tableStyles.tdWords}>{transcriptionInput}</td>
               <td className={tableStyles.tdWords}>{russianInput}</td>
 
@@ -199,7 +198,7 @@ export default class Row extends React.Component {
                   onClick={this.handleSave}
                   className={tableStyles.tableButton}
                   disabled={
-                    (emptyInputPortuguese ||
+                    (emptyInputenglish ||
                       emptyInputTranscription ||
                       emptyInputRussian ||
                       errorInInput) &&
@@ -218,7 +217,7 @@ export default class Row extends React.Component {
             </>
           ) : (
             <>
-              <td className={tableStyles.tdWords}>{portuguese}</td>
+              <td className={tableStyles.tdWords}>{english}</td>
               <td className={tableStyles.tdWords}>{transcription}</td>
               <td className={tableStyles.tdWords}>{russian}</td>
               <td className={tableStyles.tdWords}>
@@ -240,7 +239,7 @@ export default class Row extends React.Component {
         </tr>
         <tr>
           <td>
-            {(emptyInputPortuguese ||
+            {(emptyInputenglish ||
               emptyInputTranscription ||
               emptyInputRussian) && (
               <div style={{ color: this.state.color }}>{empty}</div>

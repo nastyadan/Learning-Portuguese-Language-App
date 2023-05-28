@@ -47,13 +47,22 @@ class App extends React.Component {
       return <p>Идёт загрузка ...</p>;
     }
     return (
-      <ApiContext.Provider value={words}>
+      <ApiContext.Provider value={this.words}>
         <BrowserRouter>
           <div className="App">
             <Header />
+            <ol>
+              {words.map((word) => {
+                return (
+                  <li key={word.id}>
+                    {word.english} - {word.russian}
+                  </li>
+                );
+              })}
+            </ol>
             <main>
               <Routes>
-                <Route path="/cards" element={<Slider {...listOfWords} />} />
+                <Route path="/cards" element={<Slider {...this.words} />} />
                 <Route
                   path="/table"
                   element={
