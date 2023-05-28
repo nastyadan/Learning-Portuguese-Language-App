@@ -10,6 +10,7 @@ export default class Row extends React.Component {
       portuguese: "",
       transcription: "",
       russian: "",
+
       errorInInput: false,
       emptyInputRussian: false,
       emptyInputTranscription: false,
@@ -17,6 +18,10 @@ export default class Row extends React.Component {
       colorOfInputRussian: "",
       colorOfInputTranscription: "",
       colorOfInputPortuguese: "",
+      borderColorPortuguese: "",
+      borderColorTranscription: "",
+      borderColorRussian: "",
+      color: "",
     };
   }
   handleChange = () => {
@@ -25,125 +30,128 @@ export default class Row extends React.Component {
       emptyInputRussian: true,
       emptyInputTranscription: true,
       emptyInputPortuguese: true,
+      borderColorPortuguese: "red",
+      borderColorTranscription: "red",
+      borderColorRussian: "red",
+      color: "red",
     });
   };
-  handleSaveAndDelite = () => {
+  handleCansel = () => {
     this.setState({
       clicked: !this.state.clicked,
       emptyInputRussian: false,
       emptyInputTranscription: false,
       emptyInputPortuguese: false,
+      errorInInput: false,
     });
   };
-
+  handleSave = () => {
+    this.setState(
+      {
+        clicked: !this.state.clicked,
+        emptyInputRussian: false,
+        emptyInputTranscription: false,
+        emptyInputPortuguese: false,
+        errorInInput: false,
+      },
+      this.doItLater
+    );
+  };
+  doItLater = () => {
+    console.log(this.state.portuguese);
+    console.log(this.state.transcription);
+    console.log(this.state.russian);
+  };
   handleInputChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    const result = /[^a-z]/gi;
-
     this.setState({ [name]: value });
-    if (result.test(value)) {
+  };
+
+  blurHandlerChangePortuguese = (e) => {
+    const value = e.target.value;
+    const validation = /[^a-zа-яё ]/iu;
+    const emptyInput = "";
+    if (validation.test(value)) {
       this.setState({
         errorInInput: true,
       });
     } else {
       this.setState({
         errorInInput: false,
+        borderColorPortuguese: "black",
       });
     }
-  };
-
-  blurHandlerPortuguese = (e) => {
-    const value = e.target.value;
-    const result = /[^a-z]/gi;
-
-    const emptyInput = "";
-    if (emptyInput !== value) {
-      this.setState({
-        emptyInputPortuguese: false,
-        colorOfInputPortuguese: "",
-      });
-    } else {
+    if (emptyInput === value) {
       this.setState({
         emptyInputPortuguese: true,
-        colorOfInputPortuguese: "red",
+      });
+    } else {
+      this.setState({
+        emptyInputPortuguese: false,
       });
     }
-    if (result.test(value)) {
+  };
+  blurHandlerChangeTranscription = (e) => {
+    const value = e.target.value;
+    const validation = /[^a-zа-яё ]/iu;
+    const emptyInput = "";
+    if (validation.test(value)) {
       this.setState({
         errorInInput: true,
-        colorOfInputPortuguese: "red",
       });
     } else {
       this.setState({
         errorInInput: false,
+        borderColorTranscription: "black",
       });
     }
-  };
-  blurHandlerTranscription = (e) => {
-    const value = e.target.value;
-    const result = /[^a-z]/gi;
-    const emptyInput = "";
-    if (emptyInput !== value) {
-      this.setState({
-        emptyInputTranscription: false,
-        colorOfInputTranscription: "",
-      });
-    } else {
+    if (emptyInput === value) {
       this.setState({
         emptyInputTranscription: true,
-        colorOfInputTranscription: "red",
-      });
-    }
-    if (result.test(value)) {
-      this.setState({
-        errorInInput: true,
-        colorOfInputTranscription: "red",
       });
     } else {
       this.setState({
-        errorInInput: false,
+        emptyInputTranscription: false,
       });
     }
   };
-
-  blurHandlerRussian = (e) => {
+  blurHandlerChangeRussian = (e) => {
     const value = e.target.value;
-    const result = /[^a-z]/gi;
+    const validation = /[^a-zа-яё ]/iu;
     const emptyInput = "";
-
-    if (emptyInput !== value) {
-      this.setState({
-        emptyInputRussian: false,
-        colorOfInputRussian: "",
-      });
-    } else {
-      this.setState({
-        emptyInputRussian: true,
-        colorOfInputRussian: "red",
-      });
-    }
-    if (result.test(value)) {
+    if (validation.test(value)) {
       this.setState({
         errorInInput: true,
-        colorOfInputRussian: "red",
       });
     } else {
       this.setState({
         errorInInput: false,
+        borderColorRussian: "black",
+      });
+    }
+    if (emptyInput === value) {
+      this.setState({
+        emptyInputRussian: true,
+      });
+    } else {
+      this.setState({
+        emptyInputRussian: false,
       });
     }
   };
 
   render() {
     const error = "Значение может включать только буквы";
-    const errorInInput = this.state.errorInInput;
-    const emptyInputRussian = this.state.emptyInputRussian;
-    const emptyInputTranscription = this.state.emptyInputTranscription;
-    const emptyInputPortuguese = this.state.emptyInputPortuguese;
     const empty = "Нужно заполнить все поля";
+
+    const {
+      errorInInput,
+      emptyInputPortuguese,
+      emptyInputTranscription,
+      emptyInputRussian,
+    } = this.state;
     const { id, portuguese, transcription, russian } = this.props;
-    const color = "red";
 
     let portugueseInput = (
       <input
@@ -151,9 +159,9 @@ export default class Row extends React.Component {
         placeholder={portuguese}
         name="portuguese"
         onChange={this.handleInputChange}
-        onBlur={this.blurHandlerPortuguese}
+        onBlur={this.blurHandlerChangePortuguese}
         value={this.state.portuguese}
-        style={{ borderColor: this.state.colorOfInputPortuguese }}
+        style={{ borderColor: this.state.borderColorPortuguese }}
       />
     );
     let transcriptionInput = (
@@ -161,9 +169,9 @@ export default class Row extends React.Component {
         placeholder={transcription}
         name="transcription"
         onChange={this.handleInputChange}
-        onBlur={this.blurHandlerTranscription}
+        onBlur={this.blurHandlerChangeTranscription}
         value={this.state.transcription}
-        style={{ borderColor: this.state.colorOfInputTranscription }}
+        style={{ borderColor: this.state.borderColorTranscription }}
       />
     );
     let russianInput = (
@@ -171,9 +179,9 @@ export default class Row extends React.Component {
         placeholder={russian}
         name="russian"
         onChange={this.handleInputChange}
-        onBlur={this.blurHandlerRussian}
+        onBlur={this.blurHandlerChangeRussian}
         value={this.state.russian}
-        style={{ borderColor: this.state.colorOfInputRussian }}
+        style={{ borderColor: this.state.borderColorRussian }}
       />
     );
 
@@ -188,12 +196,12 @@ export default class Row extends React.Component {
 
               <td className={tableStyles.tdWords}>
                 <button
-                  onClick={this.handleSaveAndDelite}
+                  onClick={this.handleSave}
                   className={tableStyles.tableButton}
                   disabled={
-                    (emptyInputRussian ||
+                    (emptyInputPortuguese ||
                       emptyInputTranscription ||
-                      emptyInputPortuguese ||
+                      emptyInputRussian ||
                       errorInInput) &&
                     true
                   }
@@ -201,10 +209,10 @@ export default class Row extends React.Component {
                   Сохранить
                 </button>
                 <button
-                  onClick={this.handleSaveAndDelite}
+                  onClick={this.handleCansel}
                   className={tableStyles.tableButton}
                 >
-                  Удалить
+                  Отмена
                 </button>
               </td>
             </>
@@ -220,18 +228,26 @@ export default class Row extends React.Component {
                 >
                   Редактировать
                 </button>
+                <button
+                  onClick={this.handleDelite}
+                  className={tableStyles.tableButton}
+                >
+                  Удалить слово
+                </button>
               </td>
             </>
           )}
         </tr>
         <tr>
           <td>
-            {(emptyInputRussian ||
+            {(emptyInputPortuguese ||
               emptyInputTranscription ||
-              emptyInputPortuguese) && (
-              <div style={{ color: color }}>{empty}</div>
+              emptyInputRussian) && (
+              <div style={{ color: this.state.color }}>{empty}</div>
             )}
-            {errorInInput && <div style={{ color: color }}>{error}</div>}
+            {errorInInput && (
+              <div style={{ color: this.state.color }}>{error}</div>
+            )}
           </td>
         </tr>
       </>
