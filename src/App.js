@@ -6,7 +6,6 @@ import Header from "./assets/components/header/Header.jsx";
 import AllWordsTable from "./assets/components/allWordsTable/AllWordsTable.jsx";
 import Footer from "./assets/components/footer/Footer.jsx";
 import Slider from "./assets/components/cardSlider/CardSlider";
-import { listOfWords } from "./assets/data/Data.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends React.Component {
@@ -47,43 +46,15 @@ class App extends React.Component {
       return <p>Идёт загрузка ...</p>;
     }
     return (
-      <ApiContext.Provider value={this.words}>
+      <ApiContext.Provider value={words}>
         <BrowserRouter>
           <div className="App">
             <Header />
-            <ol>
-              {words.map((word) => {
-                return (
-                  <li key={word.id}>
-                    {word.english} - {word.russian}
-                  </li>
-                );
-              })}
-            </ol>
             <main>
               <Routes>
-                <Route path="/cards" element={<Slider {...this.words} />} />
-                <Route
-                  path="/table"
-                  element={
-                    <AllWordsTable
-                      couldbechanged={listOfWords.map(
-                        (couldbechanged) => couldbechanged
-                      )}
-                    />
-                  }
-                />
-                <Route
-                  exact
-                  path="/"
-                  element={
-                    <AllWordsTable
-                      couldbechanged={listOfWords.map(
-                        (couldbechanged) => couldbechanged
-                      )}
-                    />
-                  }
-                />
+                <Route path="/cards" element={<Slider />} />
+                <Route path="/table" element={<AllWordsTable />} />
+                <Route exact path="/" element={<AllWordsTable />} />
                 <Route path="*" element="Ошибка 404: Страница не найдена" />
               </Routes>
             </main>

@@ -1,7 +1,7 @@
 import React from "react";
-import { listOfWords } from "../../data/Data.js";
 import tableStyles from "./AllWordsTable.module.scss";
 import Row from "../row/RowInTable.jsx";
+import { ApiContext } from "../apiContext/ApiContext.jsx";
 
 export default class Table extends React.Component {
   render() {
@@ -16,9 +16,13 @@ export default class Table extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {listOfWords.map((item) => {
-            return <Row key={item.id} {...item} />;
-          })}
+          <ApiContext.Consumer>
+            {(value) =>
+              value.map((word) => {
+                return <Row key={word.id} {...word} />;
+              })
+            }
+          </ApiContext.Consumer>
         </tbody>
       </table>
     );

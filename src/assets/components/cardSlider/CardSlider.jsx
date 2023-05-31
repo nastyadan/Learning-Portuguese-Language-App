@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import cardStyle from "../cardSlider/CardSlider.module.scss";
-import { listOfWords } from "../../data/Data";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
+import { ApiContext } from "../apiContext/ApiContext.jsx";
 
 function AlertMessage() {
   const [show, setShow] = useState(true);
@@ -38,7 +38,7 @@ export default class Slider extends React.Component {
   }
   handleTranslate = () => {
     const { currentCardIndex, viewedTranslations } = this.state;
-    const currentTranslation = listOfWords[currentCardIndex].russian;
+    const currentTranslation = this.words[currentCardIndex].russian;
 
     if (!viewedTranslations.includes(currentTranslation)) {
       this.setState((prevState) => ({
@@ -70,7 +70,7 @@ export default class Slider extends React.Component {
       });
     } else {
       this.setState({
-        currentCardIndex: listOfWords.length - 1,
+        currentCardIndex: this.words.length - 1,
         translated: false,
         alertMessage: false,
       });
@@ -80,7 +80,7 @@ export default class Slider extends React.Component {
   handleNextCard = (props) => {
     const { currentCardIndex } = this.state;
     const nextCardIndex = currentCardIndex + 1;
-    if (nextCardIndex < listOfWords.length) {
+    if (nextCardIndex < this.words.length) {
       this.setState({
         currentCardIndex: nextCardIndex,
         translated: false,
@@ -96,52 +96,58 @@ export default class Slider extends React.Component {
   };
   render() {
     const { currentCardIndex } = this.state;
-    const currentCard = listOfWords[currentCardIndex];
+    const currentCard = this.words[currentCardIndex];
     const { english, transcription, russian } = currentCard;
     let count = this.state.count;
     let alertMessage = <AlertMessage className={cardStyle.alertMessage} />;
 
     return (
-      <>
-        <div className={cardStyle.sliderConteiner}>
-          <div>
-            <button
-              className={cardStyle.sliderButton}
-              onClick={this.handlePrevCard}
-            >
-              Назад
-            </button>
-          </div>
-          <div className={cardStyle.card}>
-            <div className={cardStyle.cardContainer}>
-              <div className={cardStyle.wordInenglish}>{english}</div>
-              <div>{transcription}</div>
+      <ApiContext.Consumer>
+        {(value) => {
+          <>
+            <div className={cardStyle.sliderConteiner}>
               <div>
-                {this.state.translated && (
-                  <div className={cardStyle.wordInRussian}>{russian}</div>
-                )}
                 <button
-                  ref={this.buttonReference}
-                  onClick={this.handleTranslate}
-                  className={cardStyle.cardButton}
+                  className={cardStyle.sliderButton}
+                  onClick={this.handlePrevCard}
                 >
-                  {this.state.translated ? "Скрыть перевод" : "Узнать перевод"}
+                  Назад
+                </button>
+              </div>
+              <div className={cardStyle.card}>
+                <div className={cardStyle.cardContainer}>
+                  <div className={cardStyle.wordInenglish}>{english}</div>
+                  <div>{transcription}</div>
+                  <div>
+                    {this.state.translated && (
+                      <div className={cardStyle.wordInRussian}>{russian}</div>
+                    )}
+                    <button
+                      ref={this.buttonReference}
+                      onClick={this.handleTranslate}
+                      className={cardStyle.cardButton}
+                    >
+                      {this.state.translated
+                        ? "Скрыть перевод"
+                        : "Узнать перевод"}
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <button
+                  className={cardStyle.sliderButton}
+                  onClick={this.handleNextCard}
+                >
+                  Вперед
                 </button>
               </div>
             </div>
-          </div>
-          <div>
-            <button
-              className={cardStyle.sliderButton}
-              onClick={this.handleNextCard}
-            >
-              Вперед
-            </button>
-          </div>
-        </div>
-        <div>Изучено слов: {count} </div>
-        {this.state.alertMessage && alertMessage}
-      </>
+            <div>Изучено слов: {count} </div>
+            {this.state.alertMessage && alertMessage}
+          </>;
+        }}
+      </ApiContext.Consumer>
     );
   }
 }
