@@ -19,6 +19,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.getWordsFromAPI();
+  }
+
+  getWordsFromAPI() {
     this.setState({ isLoading: true });
     fetch("http://itgirlschool.justmakeit.ru/api/words")
       .then((response) => {
