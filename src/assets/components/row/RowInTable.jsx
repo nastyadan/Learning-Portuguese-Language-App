@@ -9,7 +9,6 @@ export default class Row extends React.Component {
       english: "",
       transcription: "",
       russian: "",
-
       errorInInput: false,
       emptyInputRussian: false,
       emptyInputTranscription: false,
@@ -23,6 +22,7 @@ export default class Row extends React.Component {
       color: "",
     };
   }
+
   handleChange = () => {
     this.setState({
       couldbechanged: true,
@@ -44,23 +44,16 @@ export default class Row extends React.Component {
       errorInInput: false,
     });
   };
-  handleSave = () => {
-    this.setState(
-      {
-        couldbechanged: false,
-        emptyInputRussian: false,
-        emptyInputTranscription: false,
-        emptyInputenglish: false,
-        errorInInput: false,
-      },
-      this.doItLater
-    );
+  handleSave = (e) => {
+    this.setState({
+      couldbechanged: false,
+      emptyInputRussian: false,
+      emptyInputTranscription: false,
+      emptyInputenglish: false,
+      errorInInput: false,
+    });
   };
-  doItLater = () => {
-    console.log(this.state.english);
-    console.log(this.state.transcription);
-    console.log(this.state.russian);
-  };
+
   handleInputChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;

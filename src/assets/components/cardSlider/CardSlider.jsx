@@ -26,6 +26,7 @@ export default class Slider extends Component {
     super(props);
     this.buttonReference = React.createRef();
   }
+
   static contextType = ApiContext;
   state = {
     currentCardIndex: this.props.defaultCardIndex || 0,
@@ -34,13 +35,21 @@ export default class Slider extends Component {
     count: 0,
     viewedTranslations: [],
   };
-  componentDidMount() {
-    // this.buttonReference.current.focus();
+  componentDidUpdate() {
+    console.log(this.buttonReference);
+    console.log(this.state);
+
+    if (!this.state.translated) {
+      this.buttonReference.current.focus();
+    } else {
+      this.buttonReference.current.blur();
+    }
   }
   handleTranslate = () => {
     const { currentCardIndex, viewedTranslations } = this.state;
     const currentTranslation = this.context[currentCardIndex].russian;
-
+    // console.log(this.buttonReference);
+    //this.buttonReference.current.focus();
     if (!viewedTranslations.includes(currentTranslation)) {
       this.setState((prevState) => ({
         translated: !prevState.translated,
@@ -55,9 +64,9 @@ export default class Slider extends Component {
         translated: !prevState.translated,
       }));
     }
-    if (this.buttonReference.current) {
-      this.buttonReference.current.blur();
-    }
+    // if (this.buttonReference.current) {
+    //   this.buttonReference.current.blur();
+    // }
   };
 
   handlePrevCard = () => {
@@ -95,6 +104,7 @@ export default class Slider extends Component {
       });
     }
   };
+
   render() {
     const { currentCardIndex } = this.state;
     const currentCard = this.context[currentCardIndex];
