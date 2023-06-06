@@ -41,6 +41,43 @@ class App extends React.Component {
       })
       .catch((error) => this.setState({ error, isLoading: false }));
   }
+
+  async saveUpdateWord(id, word) {
+    alert("testing");
+    const response = await fetch(
+      `http://itgirlschool.justmakeit.ru/api/words`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify(word),
+      }
+    );
+    let result = await response.json();
+    alert(result.message);
+    return response.json();
+  }
+
+  // async addWord(word) {
+  //   const response = await fetch(
+  //     `http://itgirlschool.justmakeit.ru/api/words/add`,
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json;charset=utf-8",
+  //       },
+  //       body: JSON.stringify(word),
+  //     }
+  //   );
+  //   return response.json();
+  // }
+
+  // async deleteWord(id) {
+  //   await fetch(`http://itgirlschool.justmakeit.ru/api/words/${id}/delete`, {
+  //     method: "POST",
+  //   });
+  // }
   render() {
     const { words, isLoading, error } = this.state;
     if (error) {
@@ -57,8 +94,27 @@ class App extends React.Component {
             <main>
               <Routes>
                 <Route path="/cards" element={<Slider />} />
-                <Route path="/table" element={<AllWordsTable />} />
-                <Route exact path="/" element={<AllWordsTable />} />
+                <Route
+                  path="/table"
+                  element={
+                    <AllWordsTable
+                      saveUpdateWord={this.saveUpdateWord}
+                      addWord={this.addWord}
+                      deleteWord={this.deleteWord}
+                    />
+                  }
+                />
+                <Route
+                  exact
+                  path="/"
+                  element={
+                    <AllWordsTable
+                      saveUpdateWord={this.saveUpdateWord}
+                      addWord={this.addWord}
+                      deleteWord={this.deleteWord}
+                    />
+                  }
+                />
                 <Route path="*" element="Ошибка 404: Страница не найдена" />
               </Routes>
             </main>

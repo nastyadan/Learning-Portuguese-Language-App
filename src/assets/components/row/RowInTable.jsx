@@ -44,7 +44,7 @@ export default class Row extends React.Component {
       errorInInput: false,
     });
   };
-  handleSave = (e) => {
+  handleSave = () => {
     this.setState({
       couldbechanged: false,
       emptyInputRussian: false,
@@ -52,12 +52,14 @@ export default class Row extends React.Component {
       emptyInputenglish: false,
       errorInInput: false,
     });
+    this.props.saveUpdateWord();
   };
 
   handleInputChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     this.setState({ [name]: value });
+    console.log(value);
   };
 
   blurHandlerChangeenglish = (e) => {

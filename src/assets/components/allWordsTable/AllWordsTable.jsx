@@ -4,6 +4,8 @@ import Row from "../row/RowInTable.jsx";
 import { ApiContext } from "../apiContext/ApiContext.jsx";
 
 export default class Table extends React.Component {
+  // static contextType = ApiContext;
+
   render() {
     return (
       <table className={tableStyles.table}>
@@ -19,7 +21,15 @@ export default class Table extends React.Component {
           <ApiContext.Consumer>
             {(value) =>
               value.map((word) => {
-                return <Row key={word.id} {...word} />;
+                return (
+                  <Row
+                    key={word.id}
+                    saveUpdateWord={this.props.saveUpdateWord}
+                    addWord={this.props.addWord}
+                    deleteWord={this.props.deleteWord}
+                    {...word}
+                  />
+                );
               })
             }
           </ApiContext.Consumer>

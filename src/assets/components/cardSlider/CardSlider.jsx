@@ -48,8 +48,6 @@ export default class Slider extends Component {
   handleTranslate = () => {
     const { currentCardIndex, viewedTranslations } = this.state;
     const currentTranslation = this.context[currentCardIndex].russian;
-    // console.log(this.buttonReference);
-    //this.buttonReference.current.focus();
     if (!viewedTranslations.includes(currentTranslation)) {
       this.setState((prevState) => ({
         translated: !prevState.translated,
@@ -64,9 +62,6 @@ export default class Slider extends Component {
         translated: !prevState.translated,
       }));
     }
-    // if (this.buttonReference.current) {
-    //   this.buttonReference.current.blur();
-    // }
   };
 
   handlePrevCard = () => {
